@@ -62,7 +62,7 @@ function App() {
   }
 
   return (
-    <>
+    <div className='container'>
       <Header handleSubmit={handleSubmit} />
       <Todos
         todos={filteredTodos}
@@ -70,7 +70,7 @@ function App() {
         handleComplete={handleComplete}
       />
       <Footer handleChangeFilter={handleChangeFilter} />
-    </>
+    </div>
   )
 }
 

@@ -55,6 +55,46 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: 1px solid;
+  padding: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
+  box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
+}
+
+.todos-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  text-align: left;
+}
+
+.todo-item button {
+  height: 50%;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

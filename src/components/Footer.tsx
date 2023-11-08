@@ -7,7 +7,7 @@ type Props = {
 
 function Footer({ handleChangeFilter }: Props): JSX.Element {
   return (
-    <div>
+    <footer>
       {Object.entries(filterSel).map(([key, value]) => {
         return (
           <button key={key} onClick={() => handleChangeFilter(value)}>
@@ -15,7 +15,7 @@ function Footer({ handleChangeFilter }: Props): JSX.Element {
           </button>
         )
       })}
-    </div>
+    </footer>
   )
 }
 export default Footer

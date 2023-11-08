@@ -15,7 +15,7 @@ interface Props {
 
 const Todos: React.FC<Props> = ({ todos, handleDelete, handleComplete }) => {
   return (
-    <div>
+    <div className='todos-list'>
       {todos.map(({ id, title, completed }) => (
         <Todo
           key={id}

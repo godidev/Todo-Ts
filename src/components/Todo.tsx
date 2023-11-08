@@ -22,7 +22,7 @@ const Todo: React.FC<Props> = ({
     textDecoration: completed ? 'line-through' : 'none',
   }
   return (
-    <div style={styles}>
+    <div style={styles} className='todo-item'>
       <span onClick={() => handleComplete({ id, completed: !completed })}>
         {title}
       </span>
