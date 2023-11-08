@@ -19,13 +19,13 @@ function App() {
   const [filter, setFilter] = useState<filterValue>(filterSel.ALL)
 
   const filteredTodos = useMemo(() => {
-    return todos.filter((todo) => {
-      if (filter === filterSel.COMPLETED) return todo.completed
-      return todo
-    })
+    return todos
+      .filter((todo) => {
+        if (filter === filterSel.COMPLETED) return todo.completed
+        return todo
+      })
+      .sort((a, b) => (a.completed === b.completed ? 0 : b.completed ? -1 : 1))
   }, [filter, todos])
-
-  console.log({ todos })
 
   const handleChangeFilter = (filter: filterValue): void => {
     setFilter(filter)
@@ -48,15 +48,12 @@ function App() {
     id: string
     completed: boolean
   }): void => {
-    console.log('cambiado')
     const changedTodos = todos.map((todo) => {
-      console.log({ todo })
       if (todo.id === id) {
         return { ...todo, completed }
       }
       return todo
     })
-    console.log({ changedTodos })
 
     setTodos(changedTodos)
   }
