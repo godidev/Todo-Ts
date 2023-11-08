@@ -25,6 +25,7 @@ function Header({ handleSubmit }: Props): JSX.Element {
     <header>
       <form onSubmit={handleForm}>
         <input
+          placeholder='Make a cake...'
           type='text'
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

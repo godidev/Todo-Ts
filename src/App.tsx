@@ -32,7 +32,6 @@ function App() {
   }
 
   const handleDelete = ({ id }: TodoId): void => {
-    console.log('borraooooo')
     const newTodos = todos.filter((todo) => todo.id !== id)
     setTodos(newTodos)
   }
