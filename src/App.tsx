@@ -57,6 +57,8 @@ function App() {
     setTodos(changedTodos)
   }
 
+  const completedSum = filteredTodos.filter((todo) => todo.completed).length
+
   return (
     <div className='container'>
       <Header handleSubmit={handleSubmit} />
@@ -65,7 +67,10 @@ function App() {
         handleDelete={handleDelete}
         handleComplete={handleComplete}
       />
-      <Footer handleChangeFilter={handleChangeFilter} />
+      <Footer
+        handleChangeFilter={handleChangeFilter}
+        completedSum={completedSum}
+      />
     </div>
   )
 }

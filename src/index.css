@@ -59,6 +59,7 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 body {
@@ -72,6 +73,7 @@ body {
   -webkit-box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
   box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
   background-color: rgb(36, 36, 36);
+  max-width: 60%;
 }
 
 .todos-list {
@@ -88,7 +90,6 @@ body {
   padding: 5px 20px;
   border-radius: 30px;
   gap: 10px;
-  position: relative;
   text-align: left;
 }
 
@@ -98,8 +99,17 @@ body {
 
 footer {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+}
+
+.footer-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 20px;
 }
 
 header input {
