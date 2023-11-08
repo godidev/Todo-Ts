@@ -20,6 +20,7 @@ const Todo: React.FC<Props> = ({
 }) => {
   const styles = {
     textDecoration: completed ? 'line-through' : 'none',
+    backgroundColor: completed ? '#4c4c4c' : '#242424',
   }
   return (
     <div style={styles} className='todo-item'>

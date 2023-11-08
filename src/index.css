@@ -38,7 +38,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid rgba(238, 51, 255, 0.429);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -61,12 +61,17 @@ button:focus-visible {
   align-items: center;
 }
 
+body {
+  background-color: rgb(218, 255, 8);
+}
+
 .container {
   border: 1px solid;
   padding: 20px;
   border-radius: 20px;
   -webkit-box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
   box-shadow: 5px 5px 20px -3px rgba(255, 255, 255, 0.56);
+  background-color: rgb(36, 36, 36);
 }
 
 .todos-list {
@@ -80,6 +85,8 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 5px 20px;
+  border-radius: 30px;
   gap: 10px;
   position: relative;
   text-align: left;
@@ -93,6 +100,16 @@ footer {
   display: flex;
   justify-content: center;
   gap: 10px;
+}
+
+header input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+}
+
+header input::placeholder {
+  color: white;
 }
 
 @media (prefers-color-scheme: light) {
