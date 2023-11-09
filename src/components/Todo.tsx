@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { type Todo as TodoType, type TodoId } from '../types'
 
 interface Props extends TodoType {
@@ -18,12 +19,32 @@ const Todo: React.FC<Props> = ({
   handleDelete,
   handleComplete,
 }) => {
+  const [showMenu, setShowMenu] = useState(false)
+  let timeoutId: ReturnType<typeof setTimeout>
+
+  const handleMouseEnter = () => {
+    timeoutId = setTimeout(() => {
+      setShowMenu(true)
+    }, 1000)
+  }
+
+  const handleMouseLeave = () => {
+    clearTimeout(timeoutId)
+    setShowMenu(false)
+  }
+
   const styles = {
     textDecoration: completed ? 'line-through' : 'none',
     backgroundColor: completed ? '#4c4c4c' : '#242424',
   }
   return (
-    <div style={styles} className='todo-item'>
+    <div
+      style={styles}
+      className='todo-item'
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {showMenu && <Menu />}
       <span onClick={() => handleComplete({ id, completed: !completed })}>
         {title}
       </span>
@@ -32,3 +53,14 @@ const Todo: React.FC<Props> = ({
   )
 }
 export default Todo
+
+const Menu = () => {
+  return (
+    <div className='category-menu'>
+      <ul>
+        <li>categoria 1</li>
+        <li>categoria 2</li>
+      </ul>
+    </div>
+  )
+}
