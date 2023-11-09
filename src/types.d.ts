@@ -2,6 +2,7 @@ export interface Todo {
   id: string
   title: string
   completed: boolean
+  category: string | null
 }
 
 export type TodoId = Pick<Todo, 'id'>

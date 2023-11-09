@@ -7,15 +7,15 @@ import { filterSel } from './consts'
 import { type filterValue, type Todo, type TodoId } from './types'
 
 const todosData = [
-  { id: '1', title: 'Buy groceries', completed: false },
-  { id: '2', title: 'Walk the dog', completed: true },
-  { id: '3', title: 'Finish homework', completed: false },
-  { id: '4', title: 'Clean the house', completed: true },
-  { id: '5', title: 'Go to the gym', completed: false },
+  { id: '1', title: 'Buy groceries', completed: false, category: null },
+  { id: '2', title: 'Walk the dog', completed: true, category: null },
+  { id: '3', title: 'Finish homework', completed: false, category: null },
+  { id: '4', title: 'Clean the house', completed: true, category: null },
+  { id: '5', title: 'Go to the gym', completed: false, category: null },
 ]
 
 function App() {
-  const [todos, setTodos] = useState(todosData)
+  const [todos, setTodos] = useState<Todo[]>(todosData)
   const [filter, setFilter] = useState<filterValue>(filterSel.ALL)
 
   const filteredTodos = useMemo(() => {
