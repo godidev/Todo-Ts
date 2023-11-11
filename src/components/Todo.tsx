@@ -56,11 +56,9 @@ export default Todo
 
 const Menu = () => {
   return (
-    <div className='category-menu'>
-      <ul>
-        <li>categoria 1</li>
-        <li>categoria 2</li>
-      </ul>
-    </div>
+    <ul>
+      <li>categoria 1</li>
+      <li>categoria 2</li>
+    </ul>
   )
 }
