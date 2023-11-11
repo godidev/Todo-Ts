@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { type Todo as TodoType, type TodoId } from '../types'
+import Menu from './Menu'
 
 interface Props extends TodoType {
   handleDelete: (id: TodoId) => void
@@ -53,12 +54,3 @@ const Todo: React.FC<Props> = ({
   )
 }
 export default Todo
-
-const Menu = () => {
-  return (
-    <ul>
-      <li>categoria 1</li>
-      <li>categoria 2</li>
-    </ul>
-  )
-}
