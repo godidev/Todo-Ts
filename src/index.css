@@ -98,18 +98,30 @@ body {
   gap: 10px;
   text-align: left;
   position: relative;
+
   ul {
-    position: absolute;
-    top: -8px;
-    left: -90px;
-    z-index: 10;
-    border: 1px solid;
-    border-radius: 10px;
-    padding: 5px 10px;
     list-style: none;
-    background-color: #4b7eab;
     padding: 10px;
+    li {
+      padding: 3px 10px;
+      border-radius: 30px;
+    }
   }
+}
+
+.menu-box {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: -130px;
+  left: -250px;
+  z-index: 10;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 5px 10px;
+  list-style: none;
+  background-color: #4b7eab;
+  padding: 10px;
 }
 
 .todo-item button {

@@ -5,9 +5,10 @@ export interface Todo {
   category: string | null
 }
 
-export type TodoId = Pick<Todo, 'id'>
-export type TodoTitle = Pick<Todo, 'title'>
-export type TodoCompleted = Pick<Todo, 'completed'>
+export type TodoId = Todo['id']
+export type TodoTitle = Todo['title']
+export type TodoCompleted = Todo['completed']
+export type TodoCategory = Todo['category']
 
 export type filterValue = 'all' | 'completed'
 
