@@ -1,10 +1,9 @@
-import { useMemo, useReducer, useState } from 'react'
+import { useMemo, useReducer } from 'react'
 import './App.css'
 import Todos from './components/Todos'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { filterSel } from './consts'
-import { type filterValue } from './types.ts'
 import { todoReducer } from './todoReducer.tsx'
 
 const todosData = [
@@ -16,8 +15,10 @@ const todosData = [
 ]
 
 function App() {
-  const [todos, dispatch] = useReducer(todoReducer, todosData)
-  const [filter, setFilter] = useState<filterValue>(filterSel.ALL)
+  const [{ todos, filter }, dispatch] = useReducer(todoReducer, {
+    todos: todosData,
+    filter: 'all',
+  })
 
   const filteredTodos = useMemo(() => {
     return todos
@@ -28,20 +29,13 @@ function App() {
       .sort((a, b) => (a.completed === b.completed ? 0 : b.completed ? -1 : 1))
   }, [filter, todos])
 
-  const handleChangeFilter = (filter: filterValue): void => {
-    setFilter(filter)
-  }
-
   const completedSum = filteredTodos.filter((todo) => todo.completed).length
 
   return (
     <div className='container'>
       <Header dispatch={dispatch} />
       <Todos todos={filteredTodos} dispatch={dispatch} />
-      <Footer
-        handleChangeFilter={handleChangeFilter}
-        completedSum={completedSum}
-      />
+      <Footer dispatch={dispatch} completedSum={completedSum} />
     </div>
   )
 }

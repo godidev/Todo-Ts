@@ -18,6 +18,7 @@ export const ADD_TODO = 'ADD_TODO'
 export const REMOVE_TODO = 'REMOVE_TODO'
 export const CHANGE_CATEGORY = 'CHANGE_CATEGORY'
 export const COMPLETE_TODO = 'COMPLETE-TODO'
+export const SET_FILTER = 'SET-FILTER'
 
 interface AddTodoAction {
   type: typeof ADD_TODO
@@ -39,8 +40,14 @@ interface ChangeCategoryAction {
   payload: { id: TodoId; category: TodoCategory }
 }
 
+interface SetFilterAction {
+  type: typeof SET_FILTER
+  payload: { filter: filterValue }
+}
+
 export type TodoAction =
   | AddTodoAction
   | RemoveTodoAction
   | ChangeCategoryAction
   | CompleteTodoAction
+  | SetFilterAction

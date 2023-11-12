@@ -5,36 +5,50 @@ import {
   COMPLETE_TODO,
   REMOVE_TODO,
   type TodoAction,
+  filterValue,
+  SET_FILTER,
 } from './types'
 
-export function todoReducer(todos: Todo[], action: TodoAction): Todo[] {
+interface AppState {
+  todos: Todo[]
+  filter: filterValue
+}
+
+export function todoReducer(state: AppState, action: TodoAction): AppState {
   const { type } = action
   switch (type) {
     case ADD_TODO: {
       const { newTodo } = action.payload
-      return [...todos, newTodo]
+      return { ...state, todos: [...state.todos, newTodo] }
     }
     case REMOVE_TODO: {
       const { id } = action.payload
-      return todos.filter((todo) => todo.id !== id)
+      const remainingTodos = state.todos.filter((todo) => todo.id !== id)
+      return { ...state, todos: remainingTodos }
     }
     case CHANGE_CATEGORY: {
       const { id, category } = action.payload
-      return todos.map((todo) =>
+      const changedTodo = state.todos.map((todo) =>
         todo.id === id ? { ...todo, category } : todo,
       )
+      return { ...state, todos: changedTodo }
     }
     case COMPLETE_TODO: {
       const { id, completed } = action.payload
-      return todos.map((todo) => {
+      const changedTodos = state.todos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, completed }
         }
         return todo
       })
+      return { ...state, todos: changedTodos }
+    }
+    case SET_FILTER: {
+      const { filter } = action.payload
+      return { ...state, filter }
     }
     default: {
-      return todos
+      return state
     }
   }
 }
