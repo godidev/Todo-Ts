@@ -1,32 +1,13 @@
 import { useState } from 'react'
-import { ListOfTodos, TodoCategory, TodoCompleted, TodoId } from '../types'
+import { ListOfTodos, TodoAction } from '../types'
 import Todo from './Todo'
 
 interface Props {
   todos: ListOfTodos
-  handleDelete: (id: TodoId) => void
-  handleComplete: ({
-    id,
-    completed,
-  }: {
-    id: TodoId
-    completed: TodoCompleted
-  }) => void
-  handleCategoryChange: ({
-    id,
-    category,
-  }: {
-    id: TodoId
-    category: TodoCategory
-  }) => void
+  dispatch: React.Dispatch<TodoAction>
 }
 
-const Todos: React.FC<Props> = ({
-  todos,
-  handleDelete,
-  handleComplete,
-  handleCategoryChange,
-}) => {
+const Todos: React.FC<Props> = ({ todos, dispatch }) => {
   const [categories, setCategories] = useState(['chores', 'homework'])
 
   const addCategory = (cat: string) => {
@@ -43,9 +24,7 @@ const Todos: React.FC<Props> = ({
           title={title}
           addCategory={addCategory}
           completed={completed}
-          handleDelete={handleDelete}
-          handleComplete={handleComplete}
-          handleCategoryChange={handleCategoryChange}
+          dispatch={dispatch}
         />
       ))}
     </div>

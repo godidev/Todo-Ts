@@ -1,22 +1,21 @@
 import { useState } from 'react'
-import { TodoCategory, TodoId } from '../types'
+import {
+  CHANGE_CATEGORY,
+  type TodoAction,
+  type TodoCategory,
+  type TodoId,
+} from '../types'
 
 type Props = {
   id: TodoId
   category: TodoCategory
-  handleCategoryChange: ({
-    id,
-    category,
-  }: {
-    id: TodoId
-    category: TodoCategory
-  }) => void
+  dispatch: React.Dispatch<TodoAction>
   categories: string[]
   addCategory: (cat: string) => void
 }
 
 const Menu: React.FC<Props> = ({
-  handleCategoryChange,
+  dispatch,
   category,
   categories,
   id,
@@ -36,7 +35,12 @@ const Menu: React.FC<Props> = ({
       <ul>
         {categories.map((cat) => (
           <li
-            onClick={() => handleCategoryChange({ id, category: cat })}
+            onClick={() =>
+              dispatch({
+                type: CHANGE_CATEGORY,
+                payload: { id, category: cat },
+              })
+            }
             style={{ backgroundColor: cat === category ? 'green' : '' }}
           >
             {cat}

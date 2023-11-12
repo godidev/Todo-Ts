@@ -1,11 +1,11 @@
 import { useState } from 'react'
-import { type Todo } from '../types'
+import { TodoAction, ADD_TODO } from '../types'
 
 type Props = {
-  handleSubmit: (newTodo: Todo) => void
+  dispatch: React.Dispatch<TodoAction>
 }
 
-function Header({ handleSubmit }: Props): JSX.Element {
+function Header({ dispatch }: Props): JSX.Element {
   const [inputValue, setInputValue] = useState('')
 
   const handleForm = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,8 +15,9 @@ function Header({ handleSubmit }: Props): JSX.Element {
         id: crypto.randomUUID(),
         title: inputValue,
         completed: false,
+        category: null,
       }
-      handleSubmit(newTodo)
+      dispatch({ type: ADD_TODO, payload: { newTodo } })
       setInputValue('')
     }
   }
