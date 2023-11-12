@@ -1,18 +1,23 @@
 import { filterSel } from '../consts'
-import { filterValue } from '../types'
+import { SET_FILTER, type TodoAction } from '../types'
 
 type Props = {
-  handleChangeFilter: (id: filterValue) => void
+  dispatch: React.Dispatch<TodoAction>
   completedSum: number
 }
 
-function Footer({ handleChangeFilter, completedSum }: Props): JSX.Element {
+function Footer({ dispatch, completedSum }: Props): JSX.Element {
   return (
     <footer>
       <div className='footer-buttons'>
         {Object.entries(filterSel).map(([key, value]) => {
           return (
-            <button key={key} onClick={() => handleChangeFilter(value)}>
+            <button
+              key={key}
+              onClick={() =>
+                dispatch({ type: SET_FILTER, payload: { filter: value } })
+              }
+            >
               {key}
             </button>
           )

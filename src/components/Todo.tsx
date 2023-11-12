@@ -1,28 +1,14 @@
 import { useState } from 'react'
 import {
   type Todo as TodoType,
-  type TodoId,
-  TodoCategory,
-  TodoCompleted,
+  TodoAction,
+  COMPLETE_TODO,
+  REMOVE_TODO,
 } from '../types'
 import Menu from './Menu'
 
 interface Props extends TodoType {
-  handleDelete: (id: TodoId) => void
-  handleComplete: ({
-    id,
-    completed,
-  }: {
-    id: TodoId
-    completed: TodoCompleted
-  }) => void
-  handleCategoryChange: ({
-    id,
-    category,
-  }: {
-    id: TodoId
-    category: TodoCategory
-  }) => void
+  dispatch: React.Dispatch<TodoAction>
   categories: string[]
   addCategory: (cat: string) => void
 }
@@ -33,9 +19,7 @@ const Todo: React.FC<Props> = ({
   completed,
   category,
   categories,
-  handleDelete,
-  handleComplete,
-  handleCategoryChange,
+  dispatch,
   addCategory,
 }) => {
   const [showMenu, setShowMenu] = useState(false)
@@ -67,15 +51,31 @@ const Todo: React.FC<Props> = ({
         <Menu
           id={id}
           categories={categories}
-          handleCategoryChange={handleCategoryChange}
           category={category}
+          dispatch={dispatch}
           addCategory={addCategory}
         />
       )}
-      <span onClick={() => handleComplete({ id, completed: !completed })}>
+      <span
+        onClick={() =>
+          dispatch({
+            type: COMPLETE_TODO,
+            payload: { id, completed: !completed },
+          })
+        }
+      >
         {title}
       </span>
-      <button onClick={() => handleDelete(id)}>Delete</button>
+      <button
+        onClick={() =>
+          dispatch({
+            type: REMOVE_TODO,
+            payload: { id },
+          })
+        }
+      >
+        Delete
+      </button>
     </div>
   )
 }
