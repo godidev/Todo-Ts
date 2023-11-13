@@ -20,10 +20,16 @@ export const CHANGE_CATEGORY = 'CHANGE_CATEGORY'
 export const COMPLETE_TODO = 'COMPLETE-TODO'
 export const SET_FILTER = 'SET-FILTER'
 export const DELETE_COMPLETED = 'DELETE-COMPLETED'
+export const CHANGE_TODO_TITLE = 'CHANGE-TODO-TITLE'
 
 interface AddTodoAction {
   type: typeof ADD_TODO
   payload: { newTodo: Todo }
+}
+
+interface ChangeTodoTitleAction {
+  type: typeof CHANGE_TODO_TITLE
+  payload: { newTitle: string; id: TodoId }
 }
 
 interface CompleteTodoAction {
@@ -57,3 +63,4 @@ export type TodoAction =
   | CompleteTodoAction
   | SetFilterAction
   | DeletedCompletedAction
+  | ChangeTodoTitleAction

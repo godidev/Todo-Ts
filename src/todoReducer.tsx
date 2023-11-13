@@ -8,6 +8,7 @@ import {
   filterValue,
   SET_FILTER,
   DELETE_COMPLETED,
+  CHANGE_TODO_TITLE,
 } from './types'
 
 interface AppState {
@@ -36,6 +37,12 @@ export function todoReducer(state: AppState, action: TodoAction): AppState {
         todo.id === id ? { ...todo, category } : todo,
       )
       return { ...state, todos: changedTodo }
+    }
+    case CHANGE_TODO_TITLE: {
+      const { newTitle, id } = action.payload
+      const todoToEdit = state.todos.find((todo) => todo.id === id) as Todo
+      todoToEdit.title = newTitle
+      return { ...state, todos: [...state.todos, todoToEdit] }
     }
     case COMPLETE_TODO: {
       const { id, completed } = action.payload
