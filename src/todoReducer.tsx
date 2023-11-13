@@ -14,27 +14,29 @@ interface AppState {
   filter: filterValue
 }
 
-export function todoReducer(state: AppState, action: TodoAction): AppState {
-  const { type } = action
+export function todoReducer(
+  state: AppState,
+  { type, payload }: TodoAction,
+): AppState {
   switch (type) {
     case ADD_TODO: {
-      const { newTodo } = action.payload
+      const { newTodo } = payload
       return { ...state, todos: [...state.todos, newTodo] }
     }
     case REMOVE_TODO: {
-      const { id } = action.payload
+      const { id } = payload
       const remainingTodos = state.todos.filter((todo) => todo.id !== id)
       return { ...state, todos: remainingTodos }
     }
     case CHANGE_CATEGORY: {
-      const { id, category } = action.payload
+      const { id, category } = payload
       const changedTodo = state.todos.map((todo) =>
         todo.id === id ? { ...todo, category } : todo,
       )
       return { ...state, todos: changedTodo }
     }
     case COMPLETE_TODO: {
-      const { id, completed } = action.payload
+      const { id, completed } = payload
       const changedTodos = state.todos.map((todo) => {
         if (todo.id === id) {
           return { ...todo, completed }
@@ -44,7 +46,7 @@ export function todoReducer(state: AppState, action: TodoAction): AppState {
       return { ...state, todos: changedTodos }
     }
     case SET_FILTER: {
-      const { filter } = action.payload
+      const { filter } = payload
       return { ...state, filter }
     }
     default: {
