@@ -150,6 +150,10 @@ footer {
   width: 100%;
   justify-content: center;
   gap: 20px;
+  button {
+    color: #1a1a1a;
+    background-color: #70bcff;
+  }
 }
 
 header input {

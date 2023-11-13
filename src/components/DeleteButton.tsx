@@ -8,6 +8,7 @@ type Props = {
 function DeleteButton({ dispatch, id }: Props) {
   return (
     <button
+      style={{ backgroundColor: '#ff7070', color: 'black' }}
       onClick={() =>
         dispatch({
           type: REMOVE_TODO,
