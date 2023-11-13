@@ -4,8 +4,10 @@ import {
   TodoAction,
   COMPLETE_TODO,
   REMOVE_TODO,
+  CHANGE_TODO_TITLE,
 } from '../types'
 import Menu from './Menu'
+import EditSaveButton from './EditSaveButton'
 
 interface Props extends TodoType {
   dispatch: React.Dispatch<TodoAction>
@@ -23,6 +25,8 @@ const Todo: React.FC<Props> = ({
   addCategory,
 }) => {
   const [showMenu, setShowMenu] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [newTitle, setNewTitle] = useState(title)
   let timeoutId: ReturnType<typeof setTimeout>
 
   const handleMouseEnter = () => {
@@ -34,6 +38,15 @@ const Todo: React.FC<Props> = ({
   const handleMouseLeave = () => {
     clearTimeout(timeoutId)
     setShowMenu(false)
+  }
+
+  const handleEditchange = () => {
+    setIsEditing((prevEdit) => !prevEdit)
+  }
+
+  const handleSave = () => {
+    if (newTitle === title || newTitle === '') return
+    dispatch({ type: CHANGE_TODO_TITLE, payload: { id, newTitle } })
   }
 
   const styles = {
@@ -56,16 +69,24 @@ const Todo: React.FC<Props> = ({
           addCategory={addCategory}
         />
       )}
-      <span
-        onClick={() =>
-          dispatch({
-            type: COMPLETE_TODO,
-            payload: { id, completed: !completed },
-          })
-        }
-      >
-        {title}
-      </span>
+      {isEditing ? (
+        <input
+          type='text'
+          value={newTitle}
+          onChange={(e) => setNewTitle(e.target.value)}
+        />
+      ) : (
+        <span
+          onClick={() =>
+            dispatch({
+              type: COMPLETE_TODO,
+              payload: { id, completed: !completed },
+            })
+          }
+        >
+          {title}
+        </span>
+      )}
       <button
         onClick={() =>
           dispatch({
@@ -76,6 +97,11 @@ const Todo: React.FC<Props> = ({
       >
         Delete
       </button>
+      <EditSaveButton
+        isEditing={isEditing}
+        handleEditchange={handleEditchange}
+        handleSave={handleSave}
+      />
     </div>
   )
 }
