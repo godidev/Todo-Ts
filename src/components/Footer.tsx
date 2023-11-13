@@ -1,5 +1,5 @@
 import { filterSel } from '../consts'
-import { SET_FILTER, type TodoAction } from '../types'
+import { DELETE_COMPLETED, SET_FILTER, type TodoAction } from '../types'
 
 type Props = {
   dispatch: React.Dispatch<TodoAction>
@@ -25,6 +25,9 @@ function Footer({ dispatch, completedSum }: Props): JSX.Element {
       </div>
       <div>
         <span>{completedSum} ToDos completed</span>
+        <button onClick={() => dispatch({ type: DELETE_COMPLETED })}>
+          Delete completed
+        </button>
       </div>
     </footer>
   )
