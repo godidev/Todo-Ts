@@ -23,7 +23,7 @@ function Footer({ dispatch, completedSum }: Props): JSX.Element {
           )
         })}
       </div>
-      <div>
+      <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
         <span>{completedSum} ToDos completed</span>
         <button onClick={() => dispatch({ type: DELETE_COMPLETED })}>
           Delete completed

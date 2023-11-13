@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import {
   type Todo as TodoType,
-  TodoAction,
+  type TodoAction,
   COMPLETE_TODO,
-  REMOVE_TODO,
   CHANGE_TODO_TITLE,
 } from '../types'
 import Menu from './Menu'
 import EditSaveButton from './EditSaveButton'
+import DeleteButton from './DeleteButton'
+import CategoryIcon from './CategoryIcon'
 
 interface Props extends TodoType {
   dispatch: React.Dispatch<TodoAction>
@@ -54,12 +55,7 @@ const Todo: React.FC<Props> = ({
     backgroundColor: completed ? '#4c4c4c' : '#242424',
   }
   return (
-    <div
-      style={styles}
-      className='todo-item'
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div style={styles} className='todo-item'>
       {showMenu && (
         <Menu
           id={id}
@@ -76,32 +72,31 @@ const Todo: React.FC<Props> = ({
           onChange={(e) => setNewTitle(e.target.value)}
         />
       ) : (
-        <span
-          onClick={() =>
-            dispatch({
-              type: COMPLETE_TODO,
-              payload: { id, completed: !completed },
-            })
-          }
-        >
-          {title}
-        </span>
+        <>
+          <CategoryIcon
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          />
+          <span
+            onClick={() =>
+              dispatch({
+                type: COMPLETE_TODO,
+                payload: { id, completed: !completed },
+              })
+            }
+          >
+            {title}
+          </span>
+        </>
       )}
-      <button
-        onClick={() =>
-          dispatch({
-            type: REMOVE_TODO,
-            payload: { id },
-          })
-        }
-      >
-        Delete
-      </button>
-      <EditSaveButton
-        isEditing={isEditing}
-        handleEditchange={handleEditchange}
-        handleSave={handleSave}
-      />
+      <div className='todo-buttons'>
+        <DeleteButton dispatch={dispatch} id={id} />
+        <EditSaveButton
+          isEditing={isEditing}
+          handleEditchange={handleEditchange}
+          handleSave={handleSave}
+        />
+      </div>
     </div>
   )
 }
