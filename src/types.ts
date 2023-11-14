@@ -10,7 +10,7 @@ export type TodoTitle = Todo['title']
 export type TodoCompleted = Todo['completed']
 export type TodoCategory = Todo['category']
 
-export type filterValue = 'all' | 'completed'
+export type filterValue = 'all' | 'completed' | 'uncompleted'
 
 export type ListOfTodos = Todo[]
 
