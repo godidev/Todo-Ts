@@ -8,7 +8,7 @@ import {
 import Menu from './Menu'
 import EditSaveButton from './EditSaveButton'
 import DeleteButton from './DeleteButton'
-import CategoryIcon from './CategoryIcon'
+import CategoryIcon from './Icons/CategoryIcon'
 
 interface Props extends TodoType {
   dispatch: React.Dispatch<TodoAction>
