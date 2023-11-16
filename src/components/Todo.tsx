@@ -7,8 +7,8 @@ import {
 } from '../types'
 import Menu from './Menu'
 import EditSaveButton from './EditSaveButton'
-import DeleteButton from './DeleteButton'
 import CategoryIcon from './Icons/CategoryIcon'
+import DeleteIcon from './Icons/DeleteIcon'
 
 interface Props extends TodoType {
   dispatch: React.Dispatch<TodoAction>
@@ -90,7 +90,7 @@ const Todo: React.FC<Props> = ({
         </>
       )}
       <div className='todo-buttons'>
-        <DeleteButton dispatch={dispatch} id={id} />
+        <DeleteIcon dispatch={dispatch} id={id} />
         <EditSaveButton
           isEditing={isEditing}
           handleEditchange={handleEditchange}

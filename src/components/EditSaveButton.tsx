@@ -1,3 +1,7 @@
+import EditIcon from './Icons/EditIcon'
+import SaveIcon from './Icons/SaveIcon'
+import './Icons/Icons.css'
+
 type Props = {
   isEditing: boolean
   handleEditchange: () => void
@@ -13,13 +17,10 @@ function EditSaveButton({
     handleEditchange()
     handleSave()
   }
-  const styles = {
-    backgroundColor: isEditing ? 'green' : '',
-  }
-  return (
-    <button style={styles} onClick={handleClick}>
-      {isEditing ? 'Save' : 'Edit'}
-    </button>
+  return isEditing ? (
+    <SaveIcon handleClick={handleClick} />
+  ) : (
+    <EditIcon handleClick={handleClick} />
   )
 }
 export default EditSaveButton

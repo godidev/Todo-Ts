@@ -1,11 +1,18 @@
-function EditIcon() {
+type Props = {
+  handleClick: () => void
+}
+
+function EditIcon({ handleClick }: Props) {
   return (
     <svg
+      onClick={handleClick}
       xmlns='http://www.w3.org/2000/svg'
       fillRule='evenodd'
       strokeLinejoin='round'
       strokeMiterlimit={2}
       clipRule='evenodd'
+      width='100%'
+      height='100%'
       viewBox='0 0 24 24'
     >
       <path
