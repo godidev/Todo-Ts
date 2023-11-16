@@ -1,12 +1,18 @@
 import { filterSel } from '../consts'
-import { DELETE_COMPLETED, SET_FILTER, type TodoAction } from '../types'
+import {
+  DELETE_COMPLETED,
+  SET_FILTER,
+  filterValue,
+  type TodoAction,
+} from '../types'
 
 type Props = {
   dispatch: React.Dispatch<TodoAction>
   completedSum: number
+  filter: filterValue
 }
 
-function Footer({ dispatch, completedSum }: Props): JSX.Element {
+function Footer({ dispatch, completedSum, filter }: Props): JSX.Element {
   return (
     <footer>
       <div className='footer-buttons'>
@@ -17,6 +23,7 @@ function Footer({ dispatch, completedSum }: Props): JSX.Element {
               onClick={() =>
                 dispatch({ type: SET_FILTER, payload: { filter: value } })
               }
+              className={value === filter ? 'selected' : ''}
             >
               {key}
             </button>

@@ -29,7 +29,7 @@ function App() {
     <div className='container'>
       <Header dispatch={dispatch} />
       <Todos todos={filteredTodos} dispatch={dispatch} />
-      <Footer dispatch={dispatch} completedSum={completedSum} />
+      <Footer filter={filter} dispatch={dispatch} completedSum={completedSum} />
     </div>
   )
 }
