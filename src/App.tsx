@@ -1,24 +1,13 @@
-import { useMemo, useReducer } from 'react'
+import { useMemo } from 'react'
 import './App.css'
 import Todos from './components/Todos'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import { filterSel } from './consts'
-import { todoReducer } from './todoReducer.tsx'
-
-const todosData = [
-  { id: '1', title: 'Buy groceries', completed: false, category: 'chores' },
-  { id: '2', title: 'Walk the dog', completed: true, category: 'chores' },
-  { id: '3', title: 'Finish homework', completed: false, category: 'chores' },
-  { id: '4', title: 'Clean the house', completed: true, category: 'chores' },
-  { id: '5', title: 'Go to the gym', completed: false, category: 'chores' },
-]
+import useStorage from './hooks/useStorage.ts'
 
 function App() {
-  const [{ todos, filter }, dispatch] = useReducer(todoReducer, {
-    todos: todosData,
-    filter: 'all',
-  })
+  const { todos, filter, dispatch } = useStorage('todos')
 
   const filteredTodos = useMemo(() => {
     return todos
