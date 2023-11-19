@@ -49,7 +49,6 @@ const Todo: React.FC<Props> = ({
     if (newTitle === title || newTitle === '') return
     dispatch({ type: CHANGE_TODO_TITLE, payload: { id, newTitle } })
   }
-
   const styles = {
     textDecoration: completed ? 'line-through' : 'none',
     backgroundColor: completed ? '#4c4c4c' : '#242424',
@@ -66,11 +65,13 @@ const Todo: React.FC<Props> = ({
         />
       )}
       {isEditing ? (
-        <input
-          type='text'
-          value={newTitle}
-          onChange={(e) => setNewTitle(e.target.value)}
-        />
+        <form onSubmit={handleSave}>
+          <input
+            type='text'
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+          />
+        </form>
       ) : (
         <>
           <CategoryIcon
