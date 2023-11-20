@@ -40,9 +40,10 @@ export function todoReducer(state: AppState, action: TodoAction): AppState {
     }
     case CHANGE_TODO_TITLE: {
       const { newTitle, id } = action.payload
-      const todoToEdit = state.todos.find((todo) => todo.id === id) as Todo
-      todoToEdit.title = newTitle
-      return { ...state, todos: [...state.todos, todoToEdit] }
+      const editedTodos: Todo[] = state.todos.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle } : todo,
+      )
+      return { ...state, todos: editedTodos }
     }
     case COMPLETE_TODO: {
       const { id, completed } = action.payload
